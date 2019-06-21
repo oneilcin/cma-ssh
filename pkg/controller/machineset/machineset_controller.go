@@ -123,8 +123,8 @@ type ReconcileMachineSet struct {
 func (r *ReconcileMachineSet) Reconcile(request reconcile.Request) (reconcile.Result, error) {
 	log.Info("reconciling machineset", "request", request)
 	// Fetch the CnctMachineSet instance
-	instance := &clusterv1alpha1.CnctMachineSet{}
-	err := r.Get(context.TODO(), request.NamespacedName, instance)
+	machineSet := &clusterv1alpha1.CnctMachineSet{}
+	err := r.Get(context.TODO(), request.NamespacedName, machineSet)
 	if err != nil {
 		if apierrors.IsNotFound(err) {
 			// Object not found, return.  Created objects are automatically garbage collected.
@@ -136,18 +136,22 @@ func (r *ReconcileMachineSet) Reconcile(request reconcile.Request) (reconcile.Re
 	}
 
 	// reconcile MachineSet logic
-	r.reconcile(instance)
+	recResult, recErr := r.reconcile(machineSet)
+	if recErr != nil {
+		log.Error(recErr, "Failed to reconcile MachineSet", "MachineSet", machineSet)
+		r.EventRecorder.Eventf(machineSet, corev1.EventTypeWarning, "ReconcileError",
+			"Reconcile Error: %v", recErr)
+	}
 
-	return reconcile.Result{}, nil
+	return recResult, recErr
 }
 
 // getCluster returns the Cluster associated with the MachineSet, if any.
-func (r *ReconcileMachineSet) getCluster(ms *clusterv1alpha1.CnctMachineSet) (*clusterv1alpha1.CnctCluster, error) {
+func (r *ReconcileMachineSet) getCluster(name string, namespace string) (*clusterv1alpha1.CnctCluster, error) {
 	cluster := &clusterv1alpha1.CnctCluster{}
 	key := client.ObjectKey{
-		Namespace: ms.Namespace,
-		// assuming cluster name is the same as namespace
-		Name: ms.Namespace,
+		Name:      name,
+		Namespace: namespace,
 	}
 	if err := r.Client.Get(context.Background(), key, cluster); err != nil {
 		return nil, err
@@ -169,9 +173,18 @@ func (r *ReconcileMachineSet) reconcile(machineSet *clusterv1alpha1.CnctMachineS
 		return reconcile.Result{}, err
 	}
 
-	cluster, err := r.getCluster(machineSet)
+	var clusterName *clusterv1alpha1.CnctCluster
+	clusterName, err = util.GetClusterFromNamespace(r.Client, machineSet.Namespace)
 	if err != nil {
-		// Cluster might not be defined yet
+		log.Error(err, "Cluster may not be defined yet")
+		return reconcile.Result{}, err
+	}
+	log.Info("Cluster name was found", "clustername", clusterName.Name)
+
+	// Get cluster, using the Name retrieved from previous call.
+	cluster, err := r.getCluster(clusterName.Name, machineSet.Namespace)
+	if err != nil {
+		log.Error(err, "Cluster may not be defined yet")
 		return reconcile.Result{}, err
 	}
 
