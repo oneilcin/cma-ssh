@@ -4,6 +4,7 @@ import (
 	"context"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/samsung-cnct/cma-ssh/internal/apiserver"
 	pb "github.com/samsung-cnct/cma-ssh/pkg/generated/api"
@@ -85,11 +86,39 @@ func (r *ApiServer) addgRPCRestGateway(router *http.ServeMux, grpcPortNumber int
 	gwmux := runtime.NewServeMux()
 	err := pb.RegisterClusterHandlerFromEndpoint(context.Background(), gwmux, "localhost:"+strconv.Itoa(grpcPortNumber), dopts)
 	if err != nil {
-		klog.Errorf("Failed to register handler from enpoint: %q", err)
+		klog.Errorf("Failed to register handler from endpoint: %q", err)
 	}
-	router.Handle("/api/", gwmux)
+	router.Handle("/api/", allowCORS(gwmux))
 }
 
 func (r *ApiServer) newgRPCServiceServer() *apiserver.Server {
 	return &apiserver.Server{Manager: r.Manager}
+}
+
+// allowCORS allows Cross Origin Resource Sharing from any origin.
+// Don't do this without consideration in production systems.
+func allowCORS(h http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if origin := r.Header.Get("Origin"); origin != "" {
+			w.Header().Set("Access-Control-Allow-Origin", origin)
+			if r.Method == "OPTIONS" && r.Header.Get("Access-Control-Request-Method") != "" {
+				preflightHandler(w, r)
+				return
+			}
+		}
+		h.ServeHTTP(w, r)
+	})
+}
+
+// pre-flightHandler adds the necessary headers in order to serve
+// CORS from any origin using the methods "GET", "HEAD", "POST", "PUT", "DELETE"
+// We insist, don't do this without consideration in production systems.
+func preflightHandler(w http.ResponseWriter, r *http.Request) {
+	headers := []string{"Content-Type", "Accept"}
+	methods := []string{"GET", "HEAD", "POST", "PUT", "DELETE"}
+
+	w.Header().Set("Access-Control-Allow-Headers", strings.Join(headers, ","))
+	w.Header().Set("Access-Control-Allow-Methods", strings.Join(methods, ","))
+
+	klog.Infof("pre-flight request for %s", r.URL.Path)
 }
