@@ -1,4 +1,3 @@
-IMAGE = quay.io/samsung_cnct/cma-ssh
 VERSION = v0.1.0
 DIR := ${CURDIR}
 REGISTRY ?= quay.io/samsung_cnct
@@ -48,16 +47,16 @@ test: build-dependencies-container
 	$(DOCKER_BUILD) 'go test -v ./...'
 
 generate: bin/deepcopy-gen
-	PATH=${CURDIR}/bin:$(PATH) $(GO) generate ./...
+	PATH=${CURDIR}/bin:$$($(GO) env GOROOT)/bin go generate ./...
 
 clean-test: build-dependencies-container
 	$(DOCKER_BUILD) '$(GO_SYSTEM_FLAGS) $(GO) build -o $(TARGET) ./cmd/cma-ssh'
 
 # protoc generates the proto buf api
-protoc:
-	$(DOCKER_BUILD) ./build/generators/api.sh
-	$(DOCKER_BUILD) ./build/generators/swagger-dist-adjustment.sh
-	$(MAKE) generate
+protoc: build-dependencies-container
+	$(DOCKER_BUILD) build/generators/api.sh
+	$(DOCKER_BUILD) build/generators/swagger-dist-adjustment.sh
+	$(call generate)
 
 # Generate manifests e.g. CRD, RBAC etc.
 # generate parts of helm chart

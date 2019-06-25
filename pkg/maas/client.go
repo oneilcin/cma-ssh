@@ -84,8 +84,13 @@ type CreateResponse struct {
 	// regarding MAAS see the official documentation or webook:
 	// https://docs.maas.io/2.5/en/api
 	// https://github.com/davidewatson/cluster-api-webhooks-maas/pull/1
-	// TODO: Replace or augement this with ProviderID.
+	// TODO: Replace or augment this with ProviderID.
 	SystemID string
+
+	// HostName is a MaaS hostname every machine in the maas node pool is
+	// assigned. It is the human readable machine name surfaced by maas DNS
+	// for quick machine location.
+	Hostname string
 }
 
 // Create creates a machine
@@ -122,6 +127,7 @@ func (c Client) Create(ctx context.Context, request *CreateRequest) (*CreateResp
 		ProviderID:  request.ProviderID,
 		IPAddresses: m.IPAddresses(),
 		SystemID:    m.SystemID(),
+		Hostname:    m.Hostname(),
 	}, nil
 }
 

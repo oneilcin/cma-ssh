@@ -192,6 +192,72 @@ func (s *Server) GetCluster(ctx context.Context, in *pb.GetClusterMsg) (*pb.GetC
 	}, nil
 }
 
+func (s *Server) GetClusterNodesStatus(ctx context.Context, in *pb.GetClusterNodesStatusMsg) (*pb.GetClusterNodesStatusReply, error) {
+	// initialize cluster
+	cluster := pb.GetClusterNodesStatusReply{}
+
+	// create client
+	client := s.Manager.GetClient()
+
+	// get cluster instance
+	clusterInstance := &v1alpha.CnctCluster{}
+
+	err := client.Get(
+		ctx,
+		clientlib.ObjectKey{
+			// this may just need to be clusterInstance.Namespace
+			Namespace: in.ClusterName,
+			Name:      in.ClusterName,
+		}, clusterInstance)
+	if err != nil {
+		if errors.IsNotFound(err) {
+			return nil, status.Error(codes.NotFound, err.Error())
+		}
+		klog.Errorf("Could not query for cluster %s: %q", in.ClusterName, err)
+		return nil, status.Error(codes.Internal, err.Error())
+	}
+
+	if in.ClusterName != clusterInstance.Namespace {
+		klog.Warningln("If the cluster name and namespace are different, then GetNodePool() may fail.")
+	}
+
+	machineList := &v1alpha.CnctMachineList{}
+	cluster.Name = clusterInstance.Name
+
+	err = client.List(
+		ctx,
+		&clientlib.ListOptions{
+			Namespace: clusterInstance.GetNamespace(),
+		}, machineList)
+	if err != nil {
+		if errors.IsNotFound(err) {
+			return nil, status.Error(codes.NotFound, err.Error())
+		}
+		klog.Errorf("Could not query for cluster %s: %q", in.ClusterName, err)
+		return nil, status.Error(codes.Internal, err.Error())
+	}
+
+	cluster.Count = int32(len(machineList.Items))
+
+	for _, clusterMachine := range machineList.Items {
+		machine := pb.GetClusterNodesStatusReply_MachineStatus {}
+
+		machine.MaasSystemId   = clusterMachine.Status.SystemId
+		machine.K8SVersion     = clusterMachine.Status.KubernetesVersion
+		machine.MaasIPAddr     = clusterMachine.Status.SshConfig.Host
+		machine.K8SNodeStatus  = string(clusterMachine.Status.Phase)
+		machine.MaasHostname   = clusterMachine.ObjectMeta.Annotations["maas-hostname"]
+
+		if clusterMachine.Status.SystemId == "" {
+			machine.MaasSystemId = "Waiting for Machine Instantiation..."
+		}
+
+		cluster.Machines = append(cluster.Machines, &machine)
+	}
+
+	return &cluster, nil
+}
+
 func (s *Server) DeleteCluster(ctx context.Context, in *pb.DeleteClusterMsg) (*pb.DeleteClusterReply, error) {
 
 	// get client

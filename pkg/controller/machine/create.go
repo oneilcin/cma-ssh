@@ -496,6 +496,7 @@ func (c *creator) updateMachine() {
 	// TODO: (zachpuck) Move these Annotations to Status
 	c.machine.ObjectMeta.Annotations["maas-ip"] = c.createResponse.IPAddresses[0]
 	c.machine.ObjectMeta.Annotations["maas-system-id"] = c.createResponse.SystemID
+	c.machine.ObjectMeta.Annotations["maas-hostname"] = c.createResponse.Hostname
 
 	err := c.k8sClient.Update(context.Background(), c.machine)
 	if err != nil {

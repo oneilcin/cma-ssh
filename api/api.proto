@@ -68,6 +68,12 @@ service Cluster {
             get : "/api/v1/cluster/list"
         };
     }
+    // Will get cluster nodes status for a provisioned cluster
+    rpc GetClusterNodesStatus (GetClusterNodesStatusMsg) returns (GetClusterNodesStatusReply) {
+        option (google.api.http) = {
+            get : "/api/v1/cluster/nodesstatus"
+        };
+    }
     // Will return version information about api server
     rpc GetVersionInformation (GetVersionMsg) returns (GetVersionReply) {
         option (google.api.http) = {
@@ -298,6 +304,39 @@ message DeleteNodePoolMsg {
     string clusterName = 1;
     // What is the node pool names to delete
     repeated string node_pool_names = 2;
+}
+
+message GetClusterNodesStatusMsg {
+    // What is the name of the Cluster to query
+    string clusterName = 1;
+}
+
+// GetClusterNodesStatusReply is the response to GetNodePool
+// or cluster machines status
+message GetClusterNodesStatusReply {
+    // The name of the cluster
+    string Name = 1;
+    // Count of machines in cluster
+    int32 count = 2;
+
+    // The status of a machine
+    message MachineStatus {
+        // Node k8s status
+        string k8sNodeStatus = 1;
+        // Kubernetes Version
+        string k8sVersion = 2;
+        // MaaS Node system_id
+        string maasSystemId = 4;
+        // MaaS Node hostname
+        string maasHostname = 5;
+        // MaaS node status
+        string maasNodeStatus = 6;
+        // MaaS IP Address
+        string maasIPAddr = 7;
+    }
+
+    // Gets list of nodes in a cluster
+    repeated MachineStatus machines = 3;
 }
 
 message DeleteNodePoolReply {

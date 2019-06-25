@@ -112,6 +112,32 @@
         ]
       }
     },
+    "/api/v1/cluster/nodesstatus": {
+      "get": {
+        "summary": "Will get cluster nodes status for a provisioned cluster",
+        "operationId": "GetClusterNodesStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cmasshGetClusterNodesStatusReply"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clusterName",
+            "description": "What is the name of the Cluster to query.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cluster"
+        ]
+      }
+    },
     "/api/v1/cluster/pool": {
       "delete": {
         "summary": "Will delete a node pool from a provisioned cluster",
@@ -269,6 +295,36 @@
     }
   },
   "definitions": {
+    "GetClusterNodesStatusReplyMachineStatus": {
+      "type": "object",
+      "properties": {
+        "k8sNodeStatus": {
+          "type": "string",
+          "title": "Node k8s status"
+        },
+        "k8sVersion": {
+          "type": "string",
+          "title": "Kubernetes Version"
+        },
+        "maasSystemId": {
+          "type": "string",
+          "title": "MaaS Node system_id"
+        },
+        "maasHostname": {
+          "type": "string",
+          "title": "MaaS Node hostname"
+        },
+        "maasNodeStatus": {
+          "type": "string",
+          "title": "MaaS node status"
+        },
+        "maasIPAddr": {
+          "type": "string",
+          "title": "MaaS IP Address"
+        }
+      },
+      "title": "The status of a machine"
+    },
     "GetVersionReplyVersionInformation": {
       "type": "object",
       "properties": {
@@ -480,6 +536,28 @@
           "title": "List of clusters"
         }
       }
+    },
+    "cmasshGetClusterNodesStatusReply": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string",
+          "title": "The name of the cluster"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Count of machines in cluster"
+        },
+        "machines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetClusterNodesStatusReplyMachineStatus"
+          },
+          "title": "Gets list of nodes in a cluster"
+        }
+      },
+      "title": "GetClusterNodesStatusReply is the response to GetNodePool\nor cluster machines status"
     },
     "cmasshGetClusterReply": {
       "type": "object",

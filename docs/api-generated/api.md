@@ -18,6 +18,9 @@
     - [GetClusterListMsg](#cmassh.GetClusterListMsg)
     - [GetClusterListReply](#cmassh.GetClusterListReply)
     - [GetClusterMsg](#cmassh.GetClusterMsg)
+    - [GetClusterNodesStatusMsg](#cmassh.GetClusterNodesStatusMsg)
+    - [GetClusterNodesStatusReply](#cmassh.GetClusterNodesStatusReply)
+    - [GetClusterNodesStatusReply.MachineStatus](#cmassh.GetClusterNodesStatusReply.MachineStatus)
     - [GetClusterReply](#cmassh.GetClusterReply)
     - [GetUpgradeClusterInformationMsg](#cmassh.GetUpgradeClusterInformationMsg)
     - [GetUpgradeClusterInformationReply](#cmassh.GetUpgradeClusterInformationReply)
@@ -53,6 +56,9 @@
     - [GetClusterListMsg](#cmassh.GetClusterListMsg)
     - [GetClusterListReply](#cmassh.GetClusterListReply)
     - [GetClusterMsg](#cmassh.GetClusterMsg)
+    - [GetClusterNodesStatusMsg](#cmassh.GetClusterNodesStatusMsg)
+    - [GetClusterNodesStatusReply](#cmassh.GetClusterNodesStatusReply)
+    - [GetClusterNodesStatusReply.MachineStatus](#cmassh.GetClusterNodesStatusReply.MachineStatus)
     - [GetClusterReply](#cmassh.GetClusterReply)
     - [GetUpgradeClusterInformationMsg](#cmassh.GetUpgradeClusterInformationMsg)
     - [GetUpgradeClusterInformationReply](#cmassh.GetUpgradeClusterInformationReply)
@@ -304,6 +310,59 @@ The specification for a set of control plane machines
 
 
 
+<a name="cmassh.GetClusterNodesStatusMsg"></a>
+
+### GetClusterNodesStatusMsg
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| clusterName | [string](#string) |  | What is the name of the Cluster to query |
+
+
+
+
+
+
+<a name="cmassh.GetClusterNodesStatusReply"></a>
+
+### GetClusterNodesStatusReply
+GetClusterNodesStatusReply is the response to GetNodePool
+or cluster machines status
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| Name | [string](#string) |  | The name of the cluster |
+| count | [int32](#int32) |  | Count of machines in cluster |
+| machines | [GetClusterNodesStatusReply.MachineStatus](#cmassh.GetClusterNodesStatusReply.MachineStatus) | repeated | Gets list of nodes in a cluster |
+
+
+
+
+
+
+<a name="cmassh.GetClusterNodesStatusReply.MachineStatus"></a>
+
+### GetClusterNodesStatusReply.MachineStatus
+The status of a machine
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| k8sNodeStatus | [string](#string) |  | Node k8s status |
+| k8sVersion | [string](#string) |  | Kubernetes Version |
+| maasSystemId | [string](#string) |  | MaaS Node system_id |
+| maasHostname | [string](#string) |  | MaaS Node hostname |
+| maasNodeStatus | [string](#string) |  | MaaS node status |
+| maasIPAddr | [string](#string) |  | MaaS IP Address |
+
+
+
+
+
+
 <a name="cmassh.GetClusterReply"></a>
 
 ### GetClusterReply
@@ -544,6 +603,7 @@ The specification for a set of machines
 | GetCluster | [GetClusterMsg](#cmassh.GetClusterMsg) | [GetClusterReply](#cmassh.GetClusterReply) | Will retrieve the status of a cluster and its kubeconfig for connectivity |
 | DeleteCluster | [DeleteClusterMsg](#cmassh.DeleteClusterMsg) | [DeleteClusterReply](#cmassh.DeleteClusterReply) | Will delete a cluster |
 | GetClusterList | [GetClusterListMsg](#cmassh.GetClusterListMsg) | [GetClusterListReply](#cmassh.GetClusterListReply) | Will retrieve a list of clusters |
+| GetClusterNodesStatus | [GetClusterNodesStatusMsg](#cmassh.GetClusterNodesStatusMsg) | [GetClusterNodesStatusReply](#cmassh.GetClusterNodesStatusReply) | Will get cluster nodes status for a provisioned cluster |
 | GetVersionInformation | [GetVersionMsg](#cmassh.GetVersionMsg) | [GetVersionReply](#cmassh.GetVersionReply) | Will return version information about api server |
 | AddNodePool | [AddNodePoolMsg](#cmassh.AddNodePoolMsg) | [AddNodePoolReply](#cmassh.AddNodePoolReply) | Will add node pool to a provisioned cluster |
 | DeleteNodePool | [DeleteNodePoolMsg](#cmassh.DeleteNodePoolMsg) | [DeleteNodePoolReply](#cmassh.DeleteNodePoolReply) | Will delete a node pool from a provisioned cluster |
@@ -782,6 +842,59 @@ The specification for a set of control plane machines
 
 
 
+<a name="cmassh.GetClusterNodesStatusMsg"></a>
+
+### GetClusterNodesStatusMsg
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| clusterName | [string](#string) |  | What is the name of the Cluster to query |
+
+
+
+
+
+
+<a name="cmassh.GetClusterNodesStatusReply"></a>
+
+### GetClusterNodesStatusReply
+GetClusterNodesStatusReply is the response to GetNodePool
+or cluster machines status
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| Name | [string](#string) |  | The name of the cluster |
+| count | [int32](#int32) |  | Count of machines in cluster |
+| machines | [GetClusterNodesStatusReply.MachineStatus](#cmassh.GetClusterNodesStatusReply.MachineStatus) | repeated | Gets list of nodes in a cluster |
+
+
+
+
+
+
+<a name="cmassh.GetClusterNodesStatusReply.MachineStatus"></a>
+
+### GetClusterNodesStatusReply.MachineStatus
+The status of a machine
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| k8sNodeStatus | [string](#string) |  | Node k8s status |
+| k8sVersion | [string](#string) |  | Kubernetes Version |
+| maasSystemId | [string](#string) |  | MaaS Node system_id |
+| maasHostname | [string](#string) |  | MaaS Node hostname |
+| maasNodeStatus | [string](#string) |  | MaaS node status |
+| maasIPAddr | [string](#string) |  | MaaS IP Address |
+
+
+
+
+
+
 <a name="cmassh.GetClusterReply"></a>
 
 ### GetClusterReply
@@ -1022,6 +1135,7 @@ The specification for a set of machines
 | GetCluster | [GetClusterMsg](#cmassh.GetClusterMsg) | [GetClusterReply](#cmassh.GetClusterReply) | Will retrieve the status of a cluster and its kubeconfig for connectivity |
 | DeleteCluster | [DeleteClusterMsg](#cmassh.DeleteClusterMsg) | [DeleteClusterReply](#cmassh.DeleteClusterReply) | Will delete a cluster |
 | GetClusterList | [GetClusterListMsg](#cmassh.GetClusterListMsg) | [GetClusterListReply](#cmassh.GetClusterListReply) | Will retrieve a list of clusters |
+| GetClusterNodesStatus | [GetClusterNodesStatusMsg](#cmassh.GetClusterNodesStatusMsg) | [GetClusterNodesStatusReply](#cmassh.GetClusterNodesStatusReply) | Will get cluster nodes status for a provisioned cluster |
 | GetVersionInformation | [GetVersionMsg](#cmassh.GetVersionMsg) | [GetVersionReply](#cmassh.GetVersionReply) | Will return version information about api server |
 | AddNodePool | [AddNodePoolMsg](#cmassh.AddNodePoolMsg) | [AddNodePoolReply](#cmassh.AddNodePoolReply) | Will add node pool to a provisioned cluster |
 | DeleteNodePool | [DeleteNodePoolMsg](#cmassh.DeleteNodePoolMsg) | [DeleteNodePoolReply](#cmassh.DeleteNodePoolReply) | Will delete a node pool from a provisioned cluster |
