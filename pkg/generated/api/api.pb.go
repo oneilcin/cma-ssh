@@ -4,10 +4,10 @@
 package cmassh
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
-	context "golang.org/x/net/context"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
 	math "math"
@@ -22,24 +22,26 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+// ClusterStatus
+// Specifies current cluster state.
 type ClusterStatus int32
 
 const (
 	// Not set
 	ClusterStatus_STATUS_UNSPECIFIED ClusterStatus = 0
-	// The PROVISIONING state indicates the cluster is being created.
+	// The cluster is being created.
 	ClusterStatus_PROVISIONING ClusterStatus = 1
-	// The RUNNING state indicates the cluster has been created and is fully usable.
+	// The cluster has been created and is fully usable.
 	ClusterStatus_RUNNING ClusterStatus = 2
-	// The RECONCILING state indicates that some work is actively being done on the cluster, such as upgrading the master or node software.
+	// Some work is actively being done on the cluster, such as upgrading the master or node software.
 	ClusterStatus_RECONCILING ClusterStatus = 3
-	// The STOPPING state indicates the cluster is being deleted
+	// The cluster is being deleted
 	ClusterStatus_STOPPING ClusterStatus = 4
-	// The ERROR state indicates the cluster may be unusable
+	// The cluster may be unusable
 	ClusterStatus_ERROR ClusterStatus = 5
-	// The DEGRADED state indicates the cluster requires user action to restore full functionality
+	// The cluster requires user action to restore full functionality
 	ClusterStatus_DEGRADED ClusterStatus = 6
 )
 
@@ -71,6 +73,7 @@ func (ClusterStatus) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_00212fb1f9d3bf1c, []int{0}
 }
 
+// CreateClusterMsg
 type CreateClusterMsg struct {
 	// Name of the cluster to be provisioned
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`

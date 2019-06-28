@@ -30,13 +30,25 @@ bin:
 	mkdir bin
 
 bin/deepcopy-gen: bin
-	$(GO_SYSTEM_FLAGS) GOBIN=$(DIR)/bin $(GO) install k8s.io/code-generator/cmd/deepcopy-gen
+	$(GO_SYSTEM_FLAGS) GOOS=linux $(GO) build -o bin/deepcopy-gen ./vendor/k8s.io/code-generator/cmd/deepcopy-gen
 
 bin/controller-gen: bin
 	$(GO_SYSTEM_FLAGS) GOBIN=$(DIR)/bin $(GO) install sigs.k8s.io/controller-tools/cmd/controller-gen
 
 bin/kustomize: bin
 	$(GO_SYSTEM_FLAGS) GOBIN=$(DIR)/bin $(GO) install sigs.k8s.io/kustomize
+
+bin/protoc-gen-go: bin
+	$(GO_SYSTEM_FLAGS) GOOS=linux $(GO) build -o bin/protoc-gen-go ./vendor/github.com/golang/protobuf/protoc-gen-go
+
+bin/protoc-gen-grpc-gateway: bin
+	$(GO_SYSTEM_FLAGS) GOOS=linux $(GO) build -o bin/protoc-gen-grpc-gateway ./vendor/github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
+
+bin/protoc-gen-swagger: bin
+	$(GO_SYSTEM_FLAGS) GOOS=linux $(GO) build -o bin/protoc-gen-swagger ./vendor/github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+
+bin/protoc-gen-doc: bin
+	$(GO_SYSTEM_FLAGS) GOOS=linux $(GO) build -o bin/protoc-gen-doc ./vendor/github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
 
 .PHONY: build-dependencies-container
 
@@ -47,16 +59,16 @@ test: build-dependencies-container
 	$(DOCKER_BUILD) 'go test -v ./...'
 
 generate: bin/deepcopy-gen
-	PATH=${CURDIR}/bin:$$($(GO) env GOROOT)/bin go generate ./...
+	$(DOCKER_BUILD) 'PATH=/go/src/github.com/samsung-cnct/cma-ssh/bin:$$PATH go generate ./...'
 
 clean-test: build-dependencies-container
 	$(DOCKER_BUILD) '$(GO_SYSTEM_FLAGS) $(GO) build -o $(TARGET) ./cmd/cma-ssh'
 
 # protoc generates the proto buf api
-protoc: build-dependencies-container
+protoc: build-dependencies-container bin/protoc-gen-go bin/protoc-gen-grpc-gateway bin/protoc-gen-swagger bin/protoc-gen-doc
 	$(DOCKER_BUILD) build/generators/api.sh
 	$(DOCKER_BUILD) build/generators/swagger-dist-adjustment.sh
-	$(call generate)
+	$(MAKE) generate
 
 # Generate manifests e.g. CRD, RBAC etc.
 # generate parts of helm chart

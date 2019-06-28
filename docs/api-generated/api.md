@@ -176,7 +176,7 @@ The specification for a set of control plane machines
 <a name="cmassh.CreateClusterMsg"></a>
 
 ### CreateClusterMsg
-
+CreateClusterMsg
 
 
 | Field | Type | Label | Description |
@@ -574,17 +574,18 @@ The specification for a set of machines
 <a name="cmassh.ClusterStatus"></a>
 
 ### ClusterStatus
-
+ClusterStatus
+Specifies current cluster state.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | STATUS_UNSPECIFIED | 0 | Not set |
-| PROVISIONING | 1 | The PROVISIONING state indicates the cluster is being created. |
-| RUNNING | 2 | The RUNNING state indicates the cluster has been created and is fully usable. |
-| RECONCILING | 3 | The RECONCILING state indicates that some work is actively being done on the cluster, such as upgrading the master or node software. |
-| STOPPING | 4 | The STOPPING state indicates the cluster is being deleted |
-| ERROR | 5 | The ERROR state indicates the cluster may be unusable |
-| DEGRADED | 6 | The DEGRADED state indicates the cluster requires user action to restore full functionality |
+| PROVISIONING | 1 | The cluster is being created. |
+| RUNNING | 2 | The cluster has been created and is fully usable. |
+| RECONCILING | 3 | Some work is actively being done on the cluster, such as upgrading the master or node software. |
+| STOPPING | 4 | The cluster is being deleted |
+| ERROR | 5 | The cluster may be unusable |
+| DEGRADED | 6 | The cluster requires user action to restore full functionality |
 
 
  
@@ -708,7 +709,7 @@ The specification for a set of control plane machines
 <a name="cmassh.CreateClusterMsg"></a>
 
 ### CreateClusterMsg
-
+CreateClusterMsg
 
 
 | Field | Type | Label | Description |
@@ -1106,17 +1107,18 @@ The specification for a set of machines
 <a name="cmassh.ClusterStatus"></a>
 
 ### ClusterStatus
-
+ClusterStatus
+Specifies current cluster state.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | STATUS_UNSPECIFIED | 0 | Not set |
-| PROVISIONING | 1 | The PROVISIONING state indicates the cluster is being created. |
-| RUNNING | 2 | The RUNNING state indicates the cluster has been created and is fully usable. |
-| RECONCILING | 3 | The RECONCILING state indicates that some work is actively being done on the cluster, such as upgrading the master or node software. |
-| STOPPING | 4 | The STOPPING state indicates the cluster is being deleted |
-| ERROR | 5 | The ERROR state indicates the cluster may be unusable |
-| DEGRADED | 6 | The DEGRADED state indicates the cluster requires user action to restore full functionality |
+| PROVISIONING | 1 | The cluster is being created. |
+| RUNNING | 2 | The cluster has been created and is fully usable. |
+| RECONCILING | 3 | Some work is actively being done on the cluster, such as upgrading the master or node software. |
+| STOPPING | 4 | The cluster is being deleted |
+| ERROR | 5 | The cluster may be unusable |
+| DEGRADED | 6 | The cluster requires user action to restore full functionality |
 
 
  

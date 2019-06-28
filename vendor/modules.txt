@@ -1,3 +1,9 @@
+# github.com/Masterminds/goutils v1.1.0
+github.com/Masterminds/goutils
+# github.com/Masterminds/semver v1.4.2
+github.com/Masterminds/semver
+# github.com/Masterminds/sprig v2.20.0+incompatible
+github.com/Masterminds/sprig
 # github.com/PuerkitoBio/purell v1.0.0
 github.com/PuerkitoBio/purell
 # github.com/PuerkitoBio/urlesc v0.0.0-20160726150825-5bd2802263f2
@@ -34,21 +40,27 @@ github.com/gobuffalo/envy
 # github.com/gogo/protobuf v1.2.1
 github.com/gogo/protobuf/proto
 github.com/gogo/protobuf/sortkeys
+github.com/gogo/protobuf/protoc-gen-gogo/descriptor
+# github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
+github.com/golang/glog
 # github.com/golang/groupcache v0.0.0-20190129154638-5b532d6fd5ef
 github.com/golang/groupcache/lru
 # github.com/golang/protobuf v1.3.1
+github.com/golang/protobuf/protoc-gen-go
 github.com/golang/protobuf/proto
+github.com/golang/protobuf/protoc-gen-go/generator
+github.com/golang/protobuf/protoc-gen-go/grpc
+github.com/golang/protobuf/protoc-gen-go/plugin
 github.com/golang/protobuf/ptypes
 github.com/golang/protobuf/jsonpb
-github.com/golang/protobuf/protoc-gen-go/generator
 github.com/golang/protobuf/ptypes/any
 github.com/golang/protobuf/ptypes/duration
 github.com/golang/protobuf/ptypes/timestamp
 github.com/golang/protobuf/ptypes/wrappers
 github.com/golang/protobuf/protoc-gen-go/descriptor
-github.com/golang/protobuf/ptypes/struct
 github.com/golang/protobuf/protoc-gen-go/generator/internal/remap
-github.com/golang/protobuf/protoc-gen-go/plugin
+github.com/golang/protobuf/descriptor
+github.com/golang/protobuf/ptypes/struct
 # github.com/google/btree v1.0.0
 github.com/google/btree
 # github.com/google/gofuzz v1.0.0
@@ -63,10 +75,18 @@ github.com/googleapis/gnostic/extensions
 github.com/gregjones/httpcache
 github.com/gregjones/httpcache/diskcache
 # github.com/grpc-ecosystem/grpc-gateway v1.8.5
+github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
+github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
 github.com/grpc-ecosystem/grpc-gateway/runtime
 github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options
 github.com/grpc-ecosystem/grpc-gateway/utilities
+github.com/grpc-ecosystem/grpc-gateway/codegenerator
+github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway/descriptor
+github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway/gengateway
+github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/genswagger
 github.com/grpc-ecosystem/grpc-gateway/internal
+github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway/httprule
+github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway/generator
 # github.com/hashicorp/golang-lru v0.5.1
 github.com/hashicorp/golang-lru
 github.com/hashicorp/golang-lru/simplelru
@@ -87,6 +107,8 @@ github.com/hpcloud/tail/ratelimiter
 github.com/hpcloud/tail/util
 github.com/hpcloud/tail/watch
 github.com/hpcloud/tail/winfile
+# github.com/huandu/xstrings v1.2.0
+github.com/huandu/xstrings
 # github.com/imdario/mergo v0.3.7
 github.com/imdario/mergo
 # github.com/inconshreveable/mousetrap v1.0.0
@@ -107,6 +129,8 @@ github.com/juju/loggo
 github.com/juju/schema
 # github.com/juju/version v0.0.0-20180108022336-b64dbd566305
 github.com/juju/version
+# github.com/lyft/protoc-gen-validate v0.1.0
+github.com/lyft/protoc-gen-validate/validate
 # github.com/magiconair/properties v1.8.0
 github.com/magiconair/properties
 # github.com/mailru/easyjson v0.0.0-20160728113105-d5b7844b561a
@@ -123,6 +147,8 @@ github.com/mitchellh/mapstructure
 github.com/modern-go/concurrent
 # github.com/modern-go/reflect2 v0.0.0-20180701023420-4b7aa43c6742
 github.com/modern-go/reflect2
+# github.com/mwitkow/go-proto-validators v0.0.0-20190212092829-1f388280e944
+github.com/mwitkow/go-proto-validators
 # github.com/onsi/ginkgo v1.8.0
 github.com/onsi/ginkgo
 github.com/onsi/ginkgo/config
@@ -177,6 +203,15 @@ github.com/prometheus/common/model
 github.com/prometheus/common/internal/bitbucket.org/ww/goautoneg
 # github.com/prometheus/procfs v0.0.0-20190416084830-8368d24ba045
 github.com/prometheus/procfs
+# github.com/pseudomuto/protoc-gen-doc v1.3.0
+github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
+github.com/pseudomuto/protoc-gen-doc
+github.com/pseudomuto/protoc-gen-doc/extensions/google_api_http
+github.com/pseudomuto/protoc-gen-doc/extensions/lyft_validate
+github.com/pseudomuto/protoc-gen-doc/extensions/validator_field
+github.com/pseudomuto/protoc-gen-doc/extensions
+# github.com/pseudomuto/protokit v0.2.0
+github.com/pseudomuto/protokit
 # github.com/shurcooL/httpfs v0.0.0-20181222201310-74dc9339e414
 github.com/shurcooL/httpfs/vfsutil
 # github.com/shurcooL/vfsgen v0.0.0-20181202132449-6a9ea43bcacd
@@ -209,6 +244,8 @@ go.uber.org/zap/internal/color
 go.uber.org/zap/internal/exit
 # golang.org/x/crypto v0.0.0-20190422183909-d864b10871cd
 golang.org/x/crypto/ssh/terminal
+golang.org/x/crypto/scrypt
+golang.org/x/crypto/pbkdf2
 # golang.org/x/net v0.0.0-20190420063019-afa5a82059c6
 golang.org/x/net/context
 golang.org/x/net/http2

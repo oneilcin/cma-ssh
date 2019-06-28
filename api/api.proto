@@ -115,23 +115,26 @@ service Cluster {
     }
 }
 
+// ClusterStatus
+// Specifies current cluster state.
 enum ClusterStatus {
     // Not set
     STATUS_UNSPECIFIED = 0;
-    // The PROVISIONING state indicates the cluster is being created.
+    // The cluster is being created.
     PROVISIONING = 1;
-    // The RUNNING state indicates the cluster has been created and is fully usable.
+    // The cluster has been created and is fully usable.
     RUNNING = 2;
-    // The RECONCILING state indicates that some work is actively being done on the cluster, such as upgrading the master or node software.
+    // Some work is actively being done on the cluster, such as upgrading the master or node software.
     RECONCILING = 3;
-    // The STOPPING state indicates the cluster is being deleted
+    // The cluster is being deleted
     STOPPING = 4;
-    // The ERROR state indicates the cluster may be unusable
+    // The cluster may be unusable
     ERROR = 5;
-    // The DEGRADED state indicates the cluster requires user action to restore full functionality
+    // The cluster requires user action to restore full functionality
     DEGRADED = 6;
 }
 
+// CreateClusterMsg
 message CreateClusterMsg {
     // Name of the cluster to be provisioned
     string name = 1;

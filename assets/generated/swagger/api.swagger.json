@@ -434,7 +434,7 @@
         "DEGRADED"
       ],
       "default": "STATUS_UNSPECIFIED",
-      "title": "- STATUS_UNSPECIFIED: Not set\n - PROVISIONING: The PROVISIONING state indicates the cluster is being created.\n - RUNNING: The RUNNING state indicates the cluster has been created and is fully usable.\n - RECONCILING: The RECONCILING state indicates that some work is actively being done on the cluster, such as upgrading the master or node software.\n - STOPPING: The STOPPING state indicates the cluster is being deleted\n - ERROR: The ERROR state indicates the cluster may be unusable\n - DEGRADED: The DEGRADED state indicates the cluster requires user action to restore full functionality"
+      "description": "ClusterStatus\nSpecifies current cluster state.\n\n - STATUS_UNSPECIFIED: Not set\n - PROVISIONING: The cluster is being created.\n - RUNNING: The cluster has been created and is fully usable.\n - RECONCILING: Some work is actively being done on the cluster, such as upgrading the master or node software.\n - STOPPING: The cluster is being deleted\n - ERROR: The cluster may be unusable\n - DEGRADED: The cluster requires user action to restore full functionality"
     },
     "cmasshControlPlaneMachineSpec": {
       "type": "object",
@@ -480,7 +480,8 @@
           },
           "title": "Machines which comprise the cluster"
         }
-      }
+      },
+      "title": "CreateClusterMsg"
     },
     "cmasshCreateClusterReply": {
       "type": "object",
