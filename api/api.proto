@@ -16,7 +16,9 @@
 
 syntax = "proto3";
 
-package cmassh;
+package cnct.kaas.api;
+
+option go_package = "pkg/generated/api";
 
 import "google/api/annotations.proto";
 import "protoc-gen-swagger/options/annotations.proto";

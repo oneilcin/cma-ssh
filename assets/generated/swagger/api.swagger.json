@@ -28,7 +28,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/cmasshGetClusterReply"
+              "$ref": "#/definitions/apiGetClusterReply"
             }
           }
         },
@@ -52,7 +52,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/cmasshDeleteClusterReply"
+              "$ref": "#/definitions/apiDeleteClusterReply"
             }
           }
         },
@@ -76,7 +76,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/cmasshCreateClusterReply"
+              "$ref": "#/definitions/apiCreateClusterReply"
             }
           }
         },
@@ -86,7 +86,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/cmasshCreateClusterMsg"
+              "$ref": "#/definitions/apiCreateClusterMsg"
             }
           }
         ],
@@ -103,7 +103,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/cmasshGetClusterListReply"
+              "$ref": "#/definitions/apiGetClusterListReply"
             }
           }
         },
@@ -120,7 +120,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/cmasshGetClusterNodesStatusReply"
+              "$ref": "#/definitions/apiGetClusterNodesStatusReply"
             }
           }
         },
@@ -146,7 +146,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/cmasshDeleteNodePoolReply"
+              "$ref": "#/definitions/apiDeleteNodePoolReply"
             }
           }
         },
@@ -181,7 +181,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/cmasshAddNodePoolReply"
+              "$ref": "#/definitions/apiAddNodePoolReply"
             }
           }
         },
@@ -191,7 +191,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/cmasshAddNodePoolMsg"
+              "$ref": "#/definitions/apiAddNodePoolMsg"
             }
           }
         ],
@@ -206,7 +206,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/cmasshScaleNodePoolReply"
+              "$ref": "#/definitions/apiScaleNodePoolReply"
             }
           }
         },
@@ -216,7 +216,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/cmasshScaleNodePoolMsg"
+              "$ref": "#/definitions/apiScaleNodePoolMsg"
             }
           }
         ],
@@ -233,7 +233,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/cmasshGetUpgradeClusterInformationReply"
+              "$ref": "#/definitions/apiGetUpgradeClusterInformationReply"
             }
           }
         },
@@ -257,7 +257,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/cmasshUpgradeClusterReply"
+              "$ref": "#/definitions/apiUpgradeClusterReply"
             }
           }
         },
@@ -267,7 +267,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/cmasshUpgradeClusterMsg"
+              "$ref": "#/definitions/apiUpgradeClusterMsg"
             }
           }
         ],
@@ -284,7 +284,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/cmasshGetVersionReply"
+              "$ref": "#/definitions/apiGetVersionReply"
             }
           }
         },
@@ -358,7 +358,7 @@
         }
       }
     },
-    "cmasshAddNodePoolMsg": {
+    "apiAddNodePoolMsg": {
       "type": "object",
       "properties": {
         "clusterName": {
@@ -368,13 +368,13 @@
         "worker_node_pools": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/cmasshMachineSpec"
+            "$ref": "#/definitions/apiMachineSpec"
           },
           "title": "What Machines to add to the cluster"
         }
       }
     },
-    "cmasshAddNodePoolReply": {
+    "apiAddNodePoolReply": {
       "type": "object",
       "properties": {
         "ok": {
@@ -384,7 +384,7 @@
         }
       }
     },
-    "cmasshClusterDetailItem": {
+    "apiClusterDetailItem": {
       "type": "object",
       "properties": {
         "name": {
@@ -400,12 +400,12 @@
           "title": "What is the kubeconfig to connect to the cluster"
         },
         "status": {
-          "$ref": "#/definitions/cmasshClusterStatus",
+          "$ref": "#/definitions/apiClusterStatus",
           "title": "The status of the cluster"
         }
       }
     },
-    "cmasshClusterItem": {
+    "apiClusterItem": {
       "type": "object",
       "properties": {
         "name": {
@@ -417,12 +417,12 @@
           "title": "Additional information about the status of the cluster"
         },
         "status": {
-          "$ref": "#/definitions/cmasshClusterStatus",
+          "$ref": "#/definitions/apiClusterStatus",
           "title": "The status of the cluster"
         }
       }
     },
-    "cmasshClusterStatus": {
+    "apiClusterStatus": {
       "type": "string",
       "enum": [
         "STATUS_UNSPECIFIED",
@@ -436,13 +436,13 @@
       "default": "STATUS_UNSPECIFIED",
       "description": "ClusterStatus\nSpecifies current cluster state.\n\n - STATUS_UNSPECIFIED: Not set\n - PROVISIONING: The cluster is being created.\n - RUNNING: The cluster has been created and is fully usable.\n - RECONCILING: Some work is actively being done on the cluster, such as upgrading the master or node software.\n - STOPPING: The cluster is being deleted\n - ERROR: The cluster may be unusable\n - DEGRADED: The cluster requires user action to restore full functionality"
     },
-    "cmasshControlPlaneMachineSpec": {
+    "apiControlPlaneMachineSpec": {
       "type": "object",
       "properties": {
         "labels": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/cmasshKubernetesLabel"
+            "$ref": "#/definitions/apiKubernetesLabel"
           },
           "title": "The labels for the control plane machines"
         },
@@ -458,7 +458,7 @@
       },
       "title": "The specification for a set of control plane machines"
     },
-    "cmasshCreateClusterMsg": {
+    "apiCreateClusterMsg": {
       "type": "object",
       "properties": {
         "name": {
@@ -470,20 +470,20 @@
           "description": "The version of Kubernetes for worker nodes. Control plane versions are determined by the MachineSpec."
         },
         "control_plane_nodes": {
-          "$ref": "#/definitions/cmasshControlPlaneMachineSpec",
+          "$ref": "#/definitions/apiControlPlaneMachineSpec",
           "title": "Machines which comprise the cluster control plane"
         },
         "worker_node_pools": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/cmasshMachineSpec"
+            "$ref": "#/definitions/apiMachineSpec"
           },
           "title": "Machines which comprise the cluster"
         }
       },
       "title": "CreateClusterMsg"
     },
-    "cmasshCreateClusterReply": {
+    "apiCreateClusterReply": {
       "type": "object",
       "properties": {
         "ok": {
@@ -492,12 +492,12 @@
           "title": "Whether or not the cluster was provisioned by this request"
         },
         "cluster": {
-          "$ref": "#/definitions/cmasshClusterItem",
+          "$ref": "#/definitions/apiClusterItem",
           "title": "The details of the cluster request response"
         }
       }
     },
-    "cmasshDeleteClusterReply": {
+    "apiDeleteClusterReply": {
       "type": "object",
       "properties": {
         "ok": {
@@ -511,7 +511,7 @@
         }
       }
     },
-    "cmasshDeleteNodePoolReply": {
+    "apiDeleteNodePoolReply": {
       "type": "object",
       "properties": {
         "ok": {
@@ -521,7 +521,7 @@
         }
       }
     },
-    "cmasshGetClusterListReply": {
+    "apiGetClusterListReply": {
       "type": "object",
       "properties": {
         "ok": {
@@ -532,13 +532,13 @@
         "clusters": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/cmasshClusterItem"
+            "$ref": "#/definitions/apiClusterItem"
           },
           "title": "List of clusters"
         }
       }
     },
-    "cmasshGetClusterNodesStatusReply": {
+    "apiGetClusterNodesStatusReply": {
       "type": "object",
       "properties": {
         "Name": {
@@ -560,7 +560,7 @@
       },
       "title": "GetClusterNodesStatusReply is the response to GetNodePool\nor cluster machines status"
     },
-    "cmasshGetClusterReply": {
+    "apiGetClusterReply": {
       "type": "object",
       "properties": {
         "ok": {
@@ -569,11 +569,11 @@
           "title": "Is the cluster in the system"
         },
         "cluster": {
-          "$ref": "#/definitions/cmasshClusterDetailItem"
+          "$ref": "#/definitions/apiClusterDetailItem"
         }
       }
     },
-    "cmasshGetUpgradeClusterInformationReply": {
+    "apiGetUpgradeClusterInformationReply": {
       "type": "object",
       "properties": {
         "ok": {
@@ -590,7 +590,7 @@
         }
       }
     },
-    "cmasshGetVersionReply": {
+    "apiGetVersionReply": {
       "type": "object",
       "properties": {
         "ok": {
@@ -605,7 +605,7 @@
       },
       "title": "Reply for version request"
     },
-    "cmasshKubernetesLabel": {
+    "apiKubernetesLabel": {
       "type": "object",
       "properties": {
         "name": {
@@ -618,7 +618,7 @@
         }
       }
     },
-    "cmasshMachineSpec": {
+    "apiMachineSpec": {
       "type": "object",
       "properties": {
         "name": {
@@ -628,7 +628,7 @@
         "labels": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/cmasshKubernetesLabel"
+            "$ref": "#/definitions/apiKubernetesLabel"
           },
           "title": "The labels for the machine set"
         },
@@ -644,7 +644,7 @@
       },
       "title": "The specification for a set of machines"
     },
-    "cmasshScaleNodePoolMsg": {
+    "apiScaleNodePoolMsg": {
       "type": "object",
       "properties": {
         "clusterName": {
@@ -654,13 +654,13 @@
         "node_pools": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/cmasshScaleNodePoolSpec"
+            "$ref": "#/definitions/apiScaleNodePoolSpec"
           },
           "title": "What node pools to scale"
         }
       }
     },
-    "cmasshScaleNodePoolReply": {
+    "apiScaleNodePoolReply": {
       "type": "object",
       "properties": {
         "ok": {
@@ -670,7 +670,7 @@
         }
       }
     },
-    "cmasshScaleNodePoolSpec": {
+    "apiScaleNodePoolSpec": {
       "type": "object",
       "properties": {
         "name": {
@@ -684,7 +684,7 @@
         }
       }
     },
-    "cmasshUpgradeClusterMsg": {
+    "apiUpgradeClusterMsg": {
       "type": "object",
       "properties": {
         "name": {
@@ -697,7 +697,7 @@
         }
       }
     },
-    "cmasshUpgradeClusterReply": {
+    "apiUpgradeClusterReply": {
       "type": "object",
       "properties": {
         "ok": {

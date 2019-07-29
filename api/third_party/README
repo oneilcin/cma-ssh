@@ -1,0 +1,45 @@
+Google APIs
+============
+
+Project: Google APIs
+URL: https://github.com/google/googleapis
+Revision: 3544ab16c3342d790b00764251e348705991ea4b
+License: Apache License 2.0
+
+
+Imported Files
+---------------
+
+- google/api/annotations.proto
+- google/api/http.proto
+- google/api/httpbody.proto
+
+
+Generated Files
+----------------
+
+They are generated from the .proto files by protoc-gen-go.
+- google/api/annotations.pb.go
+- google/api/http.pb.go
+
+Protoc-Gen-Swagger
+===================
+
+Project: gRPC Gateway
+URL: https://github.com/grpc-ecosystem/grpc-gateway
+Revision: ad529a448ba494a88058f9e5be0988713174ac86
+License: BSD 3-Clause "New" or "Revised" License
+
+
+Imported Files
+---------------
+
+- protoc-gen-swagger/options/annotations.proto
+- protoc-gen-swagger/options/openapiv2.proto
+
+Generated Files
+----------------
+
+They are generated from the .proto files by protoc-gen-go.
+- protoc-gen-swagger/options/annotations.pb.go
+- protoc-gen-swagger/options/openapiv2.proto
