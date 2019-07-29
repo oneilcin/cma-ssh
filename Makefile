@@ -9,9 +9,19 @@ DOCKER = docker
 DOCKER_BUILD ?= $(DOCKER) run --rm -v $(DIR):$(BUILDMNT) -w $(BUILDMNT) $(IMAGE) /bin/sh -c
 HOST_GOOS ?= $(shell go env GOOS)
 HOST_GOARCH ?= $(shell go env GOARCH)
-GO = go1.12.4
+GO = go1.12.7
 GO_SYSTEM_FLAGS ?= GOOS=$(HOST_GOOS) GOARCH=$(HOST_GOARCH) GO111MODULE=on GOPROXY=https://proxy.golang.org
 GOFILES = $(shell find ./ -type f -name '*.go')
+
+PROTOC_VERSION=3.9.0
+ifeq "$(HOST_GOOS)" "darwin"
+PROTOC_ARCH=osx-x86_64
+endif
+ifeq "$(HOST_GOOS)" "linux"
+PROTOC_ARCH=linux-x86_64
+endif
+PROTOC_FILENAME=protoc-${PROTOC_VERSION}-${PROTOC_ARCH}.zip
+PROTOC_DOWNLOAD_URL=https://github.com/google/protobuf/releases/download/v${PROTOC_VERSION}/${PROTOC_FILENAME}
 
 all: cma-ssh
 
@@ -24,31 +34,36 @@ $(GO):
 	GO111MODULE=off $(GO) download
 
 cma-ssh: $(GOFILES)
-	CGO_ENABLED=0 $(GO_SYSTEM_FLAGS) $(GO) build -o $(TARGET) ./cmd/cma-ssh
+	CGO_ENABLED=0 $(GO_SYSTEM_FLAGS) $(GO) build -o $(TARGET) .
 
 bin:
 	mkdir bin
 
-bin/deepcopy-gen: bin
-	$(GO_SYSTEM_FLAGS) GOOS=linux $(GO) build -o bin/deepcopy-gen ./vendor/k8s.io/code-generator/cmd/deepcopy-gen
+bin/deepcopy-gen: | bin
+	$(GO_SYSTEM_FLAGS) GOBIN=$(DIR)/bin $(GO) install k8s.io/code-generator/cmd/deepcopy-gen
 
-bin/controller-gen: bin
+bin/controller-gen: | bin
 	$(GO_SYSTEM_FLAGS) GOBIN=$(DIR)/bin $(GO) install sigs.k8s.io/controller-tools/cmd/controller-gen
 
-bin/kustomize: bin
+bin/kustomize: | bin
 	$(GO_SYSTEM_FLAGS) GOBIN=$(DIR)/bin $(GO) install sigs.k8s.io/kustomize
 
-bin/protoc-gen-go: bin
-	$(GO_SYSTEM_FLAGS) GOOS=linux $(GO) build -o bin/protoc-gen-go ./vendor/github.com/golang/protobuf/protoc-gen-go
+bin/protoc/bin/protoc: | bin
+	curl -L ${PROTOC_DOWNLOAD_URL} > /tmp/${PROTOC_FILENAME}
+	unzip -o /tmp/${PROTOC_FILENAME} -d "${PWD}/bin/protoc/"
+	rm /tmp/${PROTOC_FILENAME}
 
-bin/protoc-gen-grpc-gateway: bin
-	$(GO_SYSTEM_FLAGS) GOOS=linux $(GO) build -o bin/protoc-gen-grpc-gateway ./vendor/github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
+bin/protoc-gen-go: | bin
+	$(GO_SYSTEM_FLAGS) GOBIN=$(DIR)/bin $(GO) install github.com/golang/protobuf/protoc-gen-go
 
-bin/protoc-gen-swagger: bin
-	$(GO_SYSTEM_FLAGS) GOOS=linux $(GO) build -o bin/protoc-gen-swagger ./vendor/github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+bin/protoc-gen-grpc-gateway: | bin
+	$(GO_SYSTEM_FLAGS) GOBIN=$(DIR)/bin $(GO) install github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 
-bin/protoc-gen-doc: bin
-	$(GO_SYSTEM_FLAGS) GOOS=linux $(GO) build -o bin/protoc-gen-doc ./vendor/github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
+bin/protoc-gen-swagger: | bin
+	$(GO_SYSTEM_FLAGS) GOBIN=$(DIR)/bin $(GO) install github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+
+bin/protoc-gen-doc: | bin
+	$(GO_SYSTEM_FLAGS) GOBIN=$(DIR)/bin $(GO) install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
 
 .PHONY: build-dependencies-container
 
@@ -58,16 +73,16 @@ build-dependencies-container:
 test: build-dependencies-container
 	$(DOCKER_BUILD) 'go test -v ./...'
 
-generate: bin/deepcopy-gen
-	$(DOCKER_BUILD) 'PATH=/go/src/github.com/samsung-cnct/cma-ssh/bin:$$PATH go generate ./...'
+generate:
+	go generate ./...
 
 clean-test: build-dependencies-container
 	$(DOCKER_BUILD) '$(GO_SYSTEM_FLAGS) $(GO) build -o $(TARGET) ./cmd/cma-ssh'
 
 # protoc generates the proto buf api
-protoc: build-dependencies-container bin/protoc-gen-go bin/protoc-gen-grpc-gateway bin/protoc-gen-swagger bin/protoc-gen-doc
-	$(DOCKER_BUILD) build/generators/api.sh
-	$(DOCKER_BUILD) build/generators/swagger-dist-adjustment.sh
+protoc: bin/protoc-gen-go bin/protoc-gen-grpc-gateway bin/protoc-gen-swagger bin/protoc-gen-doc bin/protoc/bin/protoc
+	build/generators/api.sh
+	build/generators/swagger-dist-adjustment.sh
 	$(MAKE) generate
 
 # Generate manifests e.g. CRD, RBAC etc.

@@ -2,11 +2,11 @@
 // source: api.proto
 
 /*
-Package cmassh is a reverse proxy.
+Package api is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package cmassh
+package api
 
 import (
 	"context"

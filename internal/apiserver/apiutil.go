@@ -12,20 +12,20 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 )
 
-func TranslateClusterStatus(crStatus common.ClusterStatusPhase) cmassh.ClusterStatus {
+func TranslateClusterStatus(crStatus common.ClusterStatusPhase) api.ClusterStatus {
 
-	var clusterStatus = cmassh.ClusterStatus_STATUS_UNSPECIFIED
+	var clusterStatus = api.ClusterStatus_STATUS_UNSPECIFIED
 	switch crStatus {
 	case common.UnspecifiedClusterPhase:
-		clusterStatus = cmassh.ClusterStatus_STATUS_UNSPECIFIED
+		clusterStatus = api.ClusterStatus_STATUS_UNSPECIFIED
 	case common.ErrorClusterPhase:
-		clusterStatus = cmassh.ClusterStatus_ERROR
+		clusterStatus = api.ClusterStatus_ERROR
 	case common.RunningClusterPhase:
-		clusterStatus = cmassh.ClusterStatus_RUNNING
+		clusterStatus = api.ClusterStatus_RUNNING
 	case common.StoppingClusterPhase:
-		clusterStatus = cmassh.ClusterStatus_STOPPING
+		clusterStatus = api.ClusterStatus_STOPPING
 	case common.ReconcilingClusterPhase:
-		clusterStatus = cmassh.ClusterStatus_RECONCILING
+		clusterStatus = api.ClusterStatus_RECONCILING
 
 	}
 

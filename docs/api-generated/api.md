@@ -4,79 +4,41 @@
 ## Table of Contents
 
 - [api.proto](#api.proto)
-    - [AddNodePoolMsg](#cmassh.AddNodePoolMsg)
-    - [AddNodePoolReply](#cmassh.AddNodePoolReply)
-    - [ClusterDetailItem](#cmassh.ClusterDetailItem)
-    - [ClusterItem](#cmassh.ClusterItem)
-    - [ControlPlaneMachineSpec](#cmassh.ControlPlaneMachineSpec)
-    - [CreateClusterMsg](#cmassh.CreateClusterMsg)
-    - [CreateClusterReply](#cmassh.CreateClusterReply)
-    - [DeleteClusterMsg](#cmassh.DeleteClusterMsg)
-    - [DeleteClusterReply](#cmassh.DeleteClusterReply)
-    - [DeleteNodePoolMsg](#cmassh.DeleteNodePoolMsg)
-    - [DeleteNodePoolReply](#cmassh.DeleteNodePoolReply)
-    - [GetClusterListMsg](#cmassh.GetClusterListMsg)
-    - [GetClusterListReply](#cmassh.GetClusterListReply)
-    - [GetClusterMsg](#cmassh.GetClusterMsg)
-    - [GetClusterNodesStatusMsg](#cmassh.GetClusterNodesStatusMsg)
-    - [GetClusterNodesStatusReply](#cmassh.GetClusterNodesStatusReply)
-    - [GetClusterNodesStatusReply.MachineStatus](#cmassh.GetClusterNodesStatusReply.MachineStatus)
-    - [GetClusterReply](#cmassh.GetClusterReply)
-    - [GetUpgradeClusterInformationMsg](#cmassh.GetUpgradeClusterInformationMsg)
-    - [GetUpgradeClusterInformationReply](#cmassh.GetUpgradeClusterInformationReply)
-    - [GetVersionMsg](#cmassh.GetVersionMsg)
-    - [GetVersionReply](#cmassh.GetVersionReply)
-    - [GetVersionReply.VersionInformation](#cmassh.GetVersionReply.VersionInformation)
-    - [KubernetesLabel](#cmassh.KubernetesLabel)
-    - [MachineSpec](#cmassh.MachineSpec)
-    - [ScaleNodePoolMsg](#cmassh.ScaleNodePoolMsg)
-    - [ScaleNodePoolReply](#cmassh.ScaleNodePoolReply)
-    - [ScaleNodePoolSpec](#cmassh.ScaleNodePoolSpec)
-    - [UpgradeClusterMsg](#cmassh.UpgradeClusterMsg)
-    - [UpgradeClusterReply](#cmassh.UpgradeClusterReply)
+    - [AddNodePoolMsg](#cnct.kaas.api.AddNodePoolMsg)
+    - [AddNodePoolReply](#cnct.kaas.api.AddNodePoolReply)
+    - [ClusterDetailItem](#cnct.kaas.api.ClusterDetailItem)
+    - [ClusterItem](#cnct.kaas.api.ClusterItem)
+    - [ControlPlaneMachineSpec](#cnct.kaas.api.ControlPlaneMachineSpec)
+    - [CreateClusterMsg](#cnct.kaas.api.CreateClusterMsg)
+    - [CreateClusterReply](#cnct.kaas.api.CreateClusterReply)
+    - [DeleteClusterMsg](#cnct.kaas.api.DeleteClusterMsg)
+    - [DeleteClusterReply](#cnct.kaas.api.DeleteClusterReply)
+    - [DeleteNodePoolMsg](#cnct.kaas.api.DeleteNodePoolMsg)
+    - [DeleteNodePoolReply](#cnct.kaas.api.DeleteNodePoolReply)
+    - [GetClusterListMsg](#cnct.kaas.api.GetClusterListMsg)
+    - [GetClusterListReply](#cnct.kaas.api.GetClusterListReply)
+    - [GetClusterMsg](#cnct.kaas.api.GetClusterMsg)
+    - [GetClusterNodesStatusMsg](#cnct.kaas.api.GetClusterNodesStatusMsg)
+    - [GetClusterNodesStatusReply](#cnct.kaas.api.GetClusterNodesStatusReply)
+    - [GetClusterNodesStatusReply.MachineStatus](#cnct.kaas.api.GetClusterNodesStatusReply.MachineStatus)
+    - [GetClusterReply](#cnct.kaas.api.GetClusterReply)
+    - [GetUpgradeClusterInformationMsg](#cnct.kaas.api.GetUpgradeClusterInformationMsg)
+    - [GetUpgradeClusterInformationReply](#cnct.kaas.api.GetUpgradeClusterInformationReply)
+    - [GetVersionMsg](#cnct.kaas.api.GetVersionMsg)
+    - [GetVersionReply](#cnct.kaas.api.GetVersionReply)
+    - [GetVersionReply.VersionInformation](#cnct.kaas.api.GetVersionReply.VersionInformation)
+    - [KubernetesLabel](#cnct.kaas.api.KubernetesLabel)
+    - [MachineSpec](#cnct.kaas.api.MachineSpec)
+    - [ScaleNodePoolMsg](#cnct.kaas.api.ScaleNodePoolMsg)
+    - [ScaleNodePoolReply](#cnct.kaas.api.ScaleNodePoolReply)
+    - [ScaleNodePoolSpec](#cnct.kaas.api.ScaleNodePoolSpec)
+    - [UpgradeClusterMsg](#cnct.kaas.api.UpgradeClusterMsg)
+    - [UpgradeClusterReply](#cnct.kaas.api.UpgradeClusterReply)
   
-    - [ClusterStatus](#cmassh.ClusterStatus)
-  
-  
-    - [Cluster](#cmassh.Cluster)
-  
-
-- [api.proto](#api.proto)
-    - [AddNodePoolMsg](#cmassh.AddNodePoolMsg)
-    - [AddNodePoolReply](#cmassh.AddNodePoolReply)
-    - [ClusterDetailItem](#cmassh.ClusterDetailItem)
-    - [ClusterItem](#cmassh.ClusterItem)
-    - [ControlPlaneMachineSpec](#cmassh.ControlPlaneMachineSpec)
-    - [CreateClusterMsg](#cmassh.CreateClusterMsg)
-    - [CreateClusterReply](#cmassh.CreateClusterReply)
-    - [DeleteClusterMsg](#cmassh.DeleteClusterMsg)
-    - [DeleteClusterReply](#cmassh.DeleteClusterReply)
-    - [DeleteNodePoolMsg](#cmassh.DeleteNodePoolMsg)
-    - [DeleteNodePoolReply](#cmassh.DeleteNodePoolReply)
-    - [GetClusterListMsg](#cmassh.GetClusterListMsg)
-    - [GetClusterListReply](#cmassh.GetClusterListReply)
-    - [GetClusterMsg](#cmassh.GetClusterMsg)
-    - [GetClusterNodesStatusMsg](#cmassh.GetClusterNodesStatusMsg)
-    - [GetClusterNodesStatusReply](#cmassh.GetClusterNodesStatusReply)
-    - [GetClusterNodesStatusReply.MachineStatus](#cmassh.GetClusterNodesStatusReply.MachineStatus)
-    - [GetClusterReply](#cmassh.GetClusterReply)
-    - [GetUpgradeClusterInformationMsg](#cmassh.GetUpgradeClusterInformationMsg)
-    - [GetUpgradeClusterInformationReply](#cmassh.GetUpgradeClusterInformationReply)
-    - [GetVersionMsg](#cmassh.GetVersionMsg)
-    - [GetVersionReply](#cmassh.GetVersionReply)
-    - [GetVersionReply.VersionInformation](#cmassh.GetVersionReply.VersionInformation)
-    - [KubernetesLabel](#cmassh.KubernetesLabel)
-    - [MachineSpec](#cmassh.MachineSpec)
-    - [ScaleNodePoolMsg](#cmassh.ScaleNodePoolMsg)
-    - [ScaleNodePoolReply](#cmassh.ScaleNodePoolReply)
-    - [ScaleNodePoolSpec](#cmassh.ScaleNodePoolSpec)
-    - [UpgradeClusterMsg](#cmassh.UpgradeClusterMsg)
-    - [UpgradeClusterReply](#cmassh.UpgradeClusterReply)
-  
-    - [ClusterStatus](#cmassh.ClusterStatus)
+    - [ClusterStatus](#cnct.kaas.api.ClusterStatus)
   
   
-    - [Cluster](#cmassh.Cluster)
+    - [Cluster](#cnct.kaas.api.Cluster)
   
 
 - [Scalar Value Types](#scalar-value-types)
@@ -90,7 +52,7 @@
 
 
 
-<a name="cmassh.AddNodePoolMsg"></a>
+<a name="cnct.kaas.api.AddNodePoolMsg"></a>
 
 ### AddNodePoolMsg
 
@@ -99,14 +61,14 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | clusterName | [string](#string) |  | What is the cluster to add node pools to |
-| worker_node_pools | [MachineSpec](#cmassh.MachineSpec) | repeated | What Machines to add to the cluster |
+| worker_node_pools | [MachineSpec](#cnct.kaas.api.MachineSpec) | repeated | What Machines to add to the cluster |
 
 
 
 
 
 
-<a name="cmassh.AddNodePoolReply"></a>
+<a name="cnct.kaas.api.AddNodePoolReply"></a>
 
 ### AddNodePoolReply
 
@@ -121,7 +83,7 @@
 
 
 
-<a name="cmassh.ClusterDetailItem"></a>
+<a name="cnct.kaas.api.ClusterDetailItem"></a>
 
 ### ClusterDetailItem
 
@@ -132,14 +94,14 @@
 | name | [string](#string) |  | Name of the cluster |
 | status_message | [string](#string) |  | Additional information about the status of the cluster |
 | kubeconfig | [string](#string) |  | What is the kubeconfig to connect to the cluster |
-| status | [ClusterStatus](#cmassh.ClusterStatus) |  | The status of the cluster |
+| status | [ClusterStatus](#cnct.kaas.api.ClusterStatus) |  | The status of the cluster |
 
 
 
 
 
 
-<a name="cmassh.ClusterItem"></a>
+<a name="cnct.kaas.api.ClusterItem"></a>
 
 ### ClusterItem
 
@@ -149,14 +111,14 @@
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | Name of the cluster |
 | status_message | [string](#string) |  | Additional information about the status of the cluster |
-| status | [ClusterStatus](#cmassh.ClusterStatus) |  | The status of the cluster |
+| status | [ClusterStatus](#cnct.kaas.api.ClusterStatus) |  | The status of the cluster |
 
 
 
 
 
 
-<a name="cmassh.ControlPlaneMachineSpec"></a>
+<a name="cnct.kaas.api.ControlPlaneMachineSpec"></a>
 
 ### ControlPlaneMachineSpec
 The specification for a set of control plane machines
@@ -164,7 +126,7 @@ The specification for a set of control plane machines
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| labels | [KubernetesLabel](#cmassh.KubernetesLabel) | repeated | The labels for the control plane machines |
+| labels | [KubernetesLabel](#cnct.kaas.api.KubernetesLabel) | repeated | The labels for the control plane machines |
 | instanceType | [string](#string) |  | Type of machines to provision (standard or gpu) |
 | count | [int32](#int32) |  | The number of machines |
 
@@ -173,7 +135,7 @@ The specification for a set of control plane machines
 
 
 
-<a name="cmassh.CreateClusterMsg"></a>
+<a name="cnct.kaas.api.CreateClusterMsg"></a>
 
 ### CreateClusterMsg
 CreateClusterMsg
@@ -183,15 +145,15 @@ CreateClusterMsg
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | Name of the cluster to be provisioned |
 | k8s_version | [string](#string) |  | The version of Kubernetes for worker nodes. Control plane versions are determined by the MachineSpec. |
-| control_plane_nodes | [ControlPlaneMachineSpec](#cmassh.ControlPlaneMachineSpec) |  | Machines which comprise the cluster control plane |
-| worker_node_pools | [MachineSpec](#cmassh.MachineSpec) | repeated | Machines which comprise the cluster |
+| control_plane_nodes | [ControlPlaneMachineSpec](#cnct.kaas.api.ControlPlaneMachineSpec) |  | Machines which comprise the cluster control plane |
+| worker_node_pools | [MachineSpec](#cnct.kaas.api.MachineSpec) | repeated | Machines which comprise the cluster |
 
 
 
 
 
 
-<a name="cmassh.CreateClusterReply"></a>
+<a name="cnct.kaas.api.CreateClusterReply"></a>
 
 ### CreateClusterReply
 
@@ -200,14 +162,14 @@ CreateClusterMsg
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | ok | [bool](#bool) |  | Whether or not the cluster was provisioned by this request |
-| cluster | [ClusterItem](#cmassh.ClusterItem) |  | The details of the cluster request response |
+| cluster | [ClusterItem](#cnct.kaas.api.ClusterItem) |  | The details of the cluster request response |
 
 
 
 
 
 
-<a name="cmassh.DeleteClusterMsg"></a>
+<a name="cnct.kaas.api.DeleteClusterMsg"></a>
 
 ### DeleteClusterMsg
 
@@ -222,7 +184,7 @@ CreateClusterMsg
 
 
 
-<a name="cmassh.DeleteClusterReply"></a>
+<a name="cnct.kaas.api.DeleteClusterReply"></a>
 
 ### DeleteClusterReply
 
@@ -238,7 +200,7 @@ CreateClusterMsg
 
 
 
-<a name="cmassh.DeleteNodePoolMsg"></a>
+<a name="cnct.kaas.api.DeleteNodePoolMsg"></a>
 
 ### DeleteNodePoolMsg
 
@@ -254,7 +216,7 @@ CreateClusterMsg
 
 
 
-<a name="cmassh.DeleteNodePoolReply"></a>
+<a name="cnct.kaas.api.DeleteNodePoolReply"></a>
 
 ### DeleteNodePoolReply
 
@@ -269,7 +231,7 @@ CreateClusterMsg
 
 
 
-<a name="cmassh.GetClusterListMsg"></a>
+<a name="cnct.kaas.api.GetClusterListMsg"></a>
 
 ### GetClusterListMsg
 
@@ -279,7 +241,7 @@ CreateClusterMsg
 
 
 
-<a name="cmassh.GetClusterListReply"></a>
+<a name="cnct.kaas.api.GetClusterListReply"></a>
 
 ### GetClusterListReply
 
@@ -288,14 +250,14 @@ CreateClusterMsg
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | ok | [bool](#bool) |  | Is the cluster in the system |
-| clusters | [ClusterItem](#cmassh.ClusterItem) | repeated | List of clusters |
+| clusters | [ClusterItem](#cnct.kaas.api.ClusterItem) | repeated | List of clusters |
 
 
 
 
 
 
-<a name="cmassh.GetClusterMsg"></a>
+<a name="cnct.kaas.api.GetClusterMsg"></a>
 
 ### GetClusterMsg
 
@@ -310,7 +272,7 @@ CreateClusterMsg
 
 
 
-<a name="cmassh.GetClusterNodesStatusMsg"></a>
+<a name="cnct.kaas.api.GetClusterNodesStatusMsg"></a>
 
 ### GetClusterNodesStatusMsg
 
@@ -325,7 +287,7 @@ CreateClusterMsg
 
 
 
-<a name="cmassh.GetClusterNodesStatusReply"></a>
+<a name="cnct.kaas.api.GetClusterNodesStatusReply"></a>
 
 ### GetClusterNodesStatusReply
 GetClusterNodesStatusReply is the response to GetNodePool
@@ -336,14 +298,14 @@ or cluster machines status
 | ----- | ---- | ----- | ----------- |
 | Name | [string](#string) |  | The name of the cluster |
 | count | [int32](#int32) |  | Count of machines in cluster |
-| machines | [GetClusterNodesStatusReply.MachineStatus](#cmassh.GetClusterNodesStatusReply.MachineStatus) | repeated | Gets list of nodes in a cluster |
+| machines | [GetClusterNodesStatusReply.MachineStatus](#cnct.kaas.api.GetClusterNodesStatusReply.MachineStatus) | repeated | Gets list of nodes in a cluster |
 
 
 
 
 
 
-<a name="cmassh.GetClusterNodesStatusReply.MachineStatus"></a>
+<a name="cnct.kaas.api.GetClusterNodesStatusReply.MachineStatus"></a>
 
 ### GetClusterNodesStatusReply.MachineStatus
 The status of a machine
@@ -363,7 +325,7 @@ The status of a machine
 
 
 
-<a name="cmassh.GetClusterReply"></a>
+<a name="cnct.kaas.api.GetClusterReply"></a>
 
 ### GetClusterReply
 
@@ -372,14 +334,14 @@ The status of a machine
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | ok | [bool](#bool) |  | Is the cluster in the system |
-| cluster | [ClusterDetailItem](#cmassh.ClusterDetailItem) |  |  |
+| cluster | [ClusterDetailItem](#cnct.kaas.api.ClusterDetailItem) |  |  |
 
 
 
 
 
 
-<a name="cmassh.GetUpgradeClusterInformationMsg"></a>
+<a name="cnct.kaas.api.GetUpgradeClusterInformationMsg"></a>
 
 ### GetUpgradeClusterInformationMsg
 
@@ -394,7 +356,7 @@ The status of a machine
 
 
 
-<a name="cmassh.GetUpgradeClusterInformationReply"></a>
+<a name="cnct.kaas.api.GetUpgradeClusterInformationReply"></a>
 
 ### GetUpgradeClusterInformationReply
 
@@ -410,7 +372,7 @@ The status of a machine
 
 
 
-<a name="cmassh.GetVersionMsg"></a>
+<a name="cnct.kaas.api.GetVersionMsg"></a>
 
 ### GetVersionMsg
 Get version of API Server
@@ -420,7 +382,7 @@ Get version of API Server
 
 
 
-<a name="cmassh.GetVersionReply"></a>
+<a name="cnct.kaas.api.GetVersionReply"></a>
 
 ### GetVersionReply
 Reply for version request
@@ -429,14 +391,14 @@ Reply for version request
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | ok | [bool](#bool) |  | If operation was OK |
-| version_information | [GetVersionReply.VersionInformation](#cmassh.GetVersionReply.VersionInformation) |  | Version Information |
+| version_information | [GetVersionReply.VersionInformation](#cnct.kaas.api.GetVersionReply.VersionInformation) |  | Version Information |
 
 
 
 
 
 
-<a name="cmassh.GetVersionReply.VersionInformation"></a>
+<a name="cnct.kaas.api.GetVersionReply.VersionInformation"></a>
 
 ### GetVersionReply.VersionInformation
 
@@ -457,7 +419,7 @@ Reply for version request
 
 
 
-<a name="cmassh.KubernetesLabel"></a>
+<a name="cnct.kaas.api.KubernetesLabel"></a>
 
 ### KubernetesLabel
 
@@ -473,7 +435,7 @@ Reply for version request
 
 
 
-<a name="cmassh.MachineSpec"></a>
+<a name="cnct.kaas.api.MachineSpec"></a>
 
 ### MachineSpec
 The specification for a set of machines
@@ -482,7 +444,7 @@ The specification for a set of machines
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | The name of the machine set |
-| labels | [KubernetesLabel](#cmassh.KubernetesLabel) | repeated | The labels for the machine set |
+| labels | [KubernetesLabel](#cnct.kaas.api.KubernetesLabel) | repeated | The labels for the machine set |
 | instanceType | [string](#string) |  | Type of machines to provision (standard or gpu) |
 | count | [int32](#int32) |  | The number of machines |
 
@@ -491,7 +453,7 @@ The specification for a set of machines
 
 
 
-<a name="cmassh.ScaleNodePoolMsg"></a>
+<a name="cnct.kaas.api.ScaleNodePoolMsg"></a>
 
 ### ScaleNodePoolMsg
 
@@ -500,14 +462,14 @@ The specification for a set of machines
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | clusterName | [string](#string) |  | What is the name of the cluster to scale a node pool |
-| node_pools | [ScaleNodePoolSpec](#cmassh.ScaleNodePoolSpec) | repeated | What node pools to scale |
+| node_pools | [ScaleNodePoolSpec](#cnct.kaas.api.ScaleNodePoolSpec) | repeated | What node pools to scale |
 
 
 
 
 
 
-<a name="cmassh.ScaleNodePoolReply"></a>
+<a name="cnct.kaas.api.ScaleNodePoolReply"></a>
 
 ### ScaleNodePoolReply
 
@@ -522,7 +484,7 @@ The specification for a set of machines
 
 
 
-<a name="cmassh.ScaleNodePoolSpec"></a>
+<a name="cnct.kaas.api.ScaleNodePoolSpec"></a>
 
 ### ScaleNodePoolSpec
 
@@ -538,7 +500,7 @@ The specification for a set of machines
 
 
 
-<a name="cmassh.UpgradeClusterMsg"></a>
+<a name="cnct.kaas.api.UpgradeClusterMsg"></a>
 
 ### UpgradeClusterMsg
 
@@ -554,7 +516,7 @@ The specification for a set of machines
 
 
 
-<a name="cmassh.UpgradeClusterReply"></a>
+<a name="cnct.kaas.api.UpgradeClusterReply"></a>
 
 ### UpgradeClusterReply
 
@@ -571,7 +533,7 @@ The specification for a set of machines
  
 
 
-<a name="cmassh.ClusterStatus"></a>
+<a name="cnct.kaas.api.ClusterStatus"></a>
 
 ### ClusterStatus
 ClusterStatus
@@ -593,557 +555,24 @@ Specifies current cluster state.
  
 
 
-<a name="cmassh.Cluster"></a>
+<a name="cnct.kaas.api.Cluster"></a>
 
 ### Cluster
 
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateCluster | [CreateClusterMsg](#cmassh.CreateClusterMsg) | [CreateClusterReply](#cmassh.CreateClusterReply) | Will provision a cluster |
-| GetCluster | [GetClusterMsg](#cmassh.GetClusterMsg) | [GetClusterReply](#cmassh.GetClusterReply) | Will retrieve the status of a cluster and its kubeconfig for connectivity |
-| DeleteCluster | [DeleteClusterMsg](#cmassh.DeleteClusterMsg) | [DeleteClusterReply](#cmassh.DeleteClusterReply) | Will delete a cluster |
-| GetClusterList | [GetClusterListMsg](#cmassh.GetClusterListMsg) | [GetClusterListReply](#cmassh.GetClusterListReply) | Will retrieve a list of clusters |
-| GetClusterNodesStatus | [GetClusterNodesStatusMsg](#cmassh.GetClusterNodesStatusMsg) | [GetClusterNodesStatusReply](#cmassh.GetClusterNodesStatusReply) | Will get cluster nodes status for a provisioned cluster |
-| GetVersionInformation | [GetVersionMsg](#cmassh.GetVersionMsg) | [GetVersionReply](#cmassh.GetVersionReply) | Will return version information about api server |
-| AddNodePool | [AddNodePoolMsg](#cmassh.AddNodePoolMsg) | [AddNodePoolReply](#cmassh.AddNodePoolReply) | Will add node pool to a provisioned cluster |
-| DeleteNodePool | [DeleteNodePoolMsg](#cmassh.DeleteNodePoolMsg) | [DeleteNodePoolReply](#cmassh.DeleteNodePoolReply) | Will delete a node pool from a provisioned cluster |
-| ScaleNodePool | [ScaleNodePoolMsg](#cmassh.ScaleNodePoolMsg) | [ScaleNodePoolReply](#cmassh.ScaleNodePoolReply) | Will scale the number of machines in a node pool for a provisioned cluster |
-| GetUpgradeClusterInformation | [GetUpgradeClusterInformationMsg](#cmassh.GetUpgradeClusterInformationMsg) | [GetUpgradeClusterInformationReply](#cmassh.GetUpgradeClusterInformationReply) | Will return upgrade options for a given cluster |
-| UpgradeCluster | [UpgradeClusterMsg](#cmassh.UpgradeClusterMsg) | [UpgradeClusterReply](#cmassh.UpgradeClusterReply) | Will attempt to upgrade a cluster |
-
- 
-
-
-
-<a name="api.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## api.proto
-
-
-
-<a name="cmassh.AddNodePoolMsg"></a>
-
-### AddNodePoolMsg
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| clusterName | [string](#string) |  | What is the cluster to add node pools to |
-| worker_node_pools | [MachineSpec](#cmassh.MachineSpec) | repeated | What Machines to add to the cluster |
-
-
-
-
-
-
-<a name="cmassh.AddNodePoolReply"></a>
-
-### AddNodePoolReply
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | Whether or not the node pool was provisioned by this request |
-
-
-
-
-
-
-<a name="cmassh.ClusterDetailItem"></a>
-
-### ClusterDetailItem
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Name of the cluster |
-| status_message | [string](#string) |  | Additional information about the status of the cluster |
-| kubeconfig | [string](#string) |  | What is the kubeconfig to connect to the cluster |
-| status | [ClusterStatus](#cmassh.ClusterStatus) |  | The status of the cluster |
-
-
-
-
-
-
-<a name="cmassh.ClusterItem"></a>
-
-### ClusterItem
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Name of the cluster |
-| status_message | [string](#string) |  | Additional information about the status of the cluster |
-| status | [ClusterStatus](#cmassh.ClusterStatus) |  | The status of the cluster |
-
-
-
-
-
-
-<a name="cmassh.ControlPlaneMachineSpec"></a>
-
-### ControlPlaneMachineSpec
-The specification for a set of control plane machines
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| labels | [KubernetesLabel](#cmassh.KubernetesLabel) | repeated | The labels for the control plane machines |
-| instanceType | [string](#string) |  | Type of machines to provision (standard or gpu) |
-| count | [int32](#int32) |  | The number of machines |
-
-
-
-
-
-
-<a name="cmassh.CreateClusterMsg"></a>
-
-### CreateClusterMsg
-CreateClusterMsg
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Name of the cluster to be provisioned |
-| k8s_version | [string](#string) |  | The version of Kubernetes for worker nodes. Control plane versions are determined by the MachineSpec. |
-| control_plane_nodes | [ControlPlaneMachineSpec](#cmassh.ControlPlaneMachineSpec) |  | Machines which comprise the cluster control plane |
-| worker_node_pools | [MachineSpec](#cmassh.MachineSpec) | repeated | Machines which comprise the cluster |
-
-
-
-
-
-
-<a name="cmassh.CreateClusterReply"></a>
-
-### CreateClusterReply
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | Whether or not the cluster was provisioned by this request |
-| cluster | [ClusterItem](#cmassh.ClusterItem) |  | The details of the cluster request response |
-
-
-
-
-
-
-<a name="cmassh.DeleteClusterMsg"></a>
-
-### DeleteClusterMsg
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | What is the cluster&#39;s name to destroy |
-
-
-
-
-
-
-<a name="cmassh.DeleteClusterReply"></a>
-
-### DeleteClusterReply
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | Could the cluster be destroyed |
-| status | [string](#string) |  | Status of the request |
-
-
-
-
-
-
-<a name="cmassh.DeleteNodePoolMsg"></a>
-
-### DeleteNodePoolMsg
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| clusterName | [string](#string) |  | What is the cluster to delete node pools |
-| node_pool_names | [string](#string) | repeated | What is the node pool names to delete |
-
-
-
-
-
-
-<a name="cmassh.DeleteNodePoolReply"></a>
-
-### DeleteNodePoolReply
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | Was this a successful request |
-
-
-
-
-
-
-<a name="cmassh.GetClusterListMsg"></a>
-
-### GetClusterListMsg
-
-
-
-
-
-
-
-<a name="cmassh.GetClusterListReply"></a>
-
-### GetClusterListReply
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | Is the cluster in the system |
-| clusters | [ClusterItem](#cmassh.ClusterItem) | repeated | List of clusters |
-
-
-
-
-
-
-<a name="cmassh.GetClusterMsg"></a>
-
-### GetClusterMsg
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Name of the cluster to be looked up |
-
-
-
-
-
-
-<a name="cmassh.GetClusterNodesStatusMsg"></a>
-
-### GetClusterNodesStatusMsg
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| clusterName | [string](#string) |  | What is the name of the Cluster to query |
-
-
-
-
-
-
-<a name="cmassh.GetClusterNodesStatusReply"></a>
-
-### GetClusterNodesStatusReply
-GetClusterNodesStatusReply is the response to GetNodePool
-or cluster machines status
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| Name | [string](#string) |  | The name of the cluster |
-| count | [int32](#int32) |  | Count of machines in cluster |
-| machines | [GetClusterNodesStatusReply.MachineStatus](#cmassh.GetClusterNodesStatusReply.MachineStatus) | repeated | Gets list of nodes in a cluster |
-
-
-
-
-
-
-<a name="cmassh.GetClusterNodesStatusReply.MachineStatus"></a>
-
-### GetClusterNodesStatusReply.MachineStatus
-The status of a machine
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| k8sNodeStatus | [string](#string) |  | Node k8s status |
-| k8sVersion | [string](#string) |  | Kubernetes Version |
-| maasSystemId | [string](#string) |  | MaaS Node system_id |
-| maasHostname | [string](#string) |  | MaaS Node hostname |
-| maasNodeStatus | [string](#string) |  | MaaS node status |
-| maasIPAddr | [string](#string) |  | MaaS IP Address |
-
-
-
-
-
-
-<a name="cmassh.GetClusterReply"></a>
-
-### GetClusterReply
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | Is the cluster in the system |
-| cluster | [ClusterDetailItem](#cmassh.ClusterDetailItem) |  |  |
-
-
-
-
-
-
-<a name="cmassh.GetUpgradeClusterInformationMsg"></a>
-
-### GetUpgradeClusterInformationMsg
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | What is the cluster that we are considering for upgrade |
-
-
-
-
-
-
-<a name="cmassh.GetUpgradeClusterInformationReply"></a>
-
-### GetUpgradeClusterInformationReply
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | Can the cluster be upgraded |
-| versions | [string](#string) | repeated | What versions are possible right now |
-
-
-
-
-
-
-<a name="cmassh.GetVersionMsg"></a>
-
-### GetVersionMsg
-Get version of API Server
-
-
-
-
-
-
-<a name="cmassh.GetVersionReply"></a>
-
-### GetVersionReply
-Reply for version request
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | If operation was OK |
-| version_information | [GetVersionReply.VersionInformation](#cmassh.GetVersionReply.VersionInformation) |  | Version Information |
-
-
-
-
-
-
-<a name="cmassh.GetVersionReply.VersionInformation"></a>
-
-### GetVersionReply.VersionInformation
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| git_version | [string](#string) |  | The tag on the git repository |
-| git_commit | [string](#string) |  | The hash of the git commit |
-| git_tree_state | [string](#string) |  | Whether or not the tree was clean when built |
-| build_date | [string](#string) |  | Date of build |
-| go_version | [string](#string) |  | Version of go used to compile |
-| compiler | [string](#string) |  | Compiler used |
-| platform | [string](#string) |  | Platform it was compiled for / running on |
-
-
-
-
-
-
-<a name="cmassh.KubernetesLabel"></a>
-
-### KubernetesLabel
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The name of a label |
-| value | [string](#string) |  | The value of a label |
-
-
-
-
-
-
-<a name="cmassh.MachineSpec"></a>
-
-### MachineSpec
-The specification for a set of machines
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The name of the machine set |
-| labels | [KubernetesLabel](#cmassh.KubernetesLabel) | repeated | The labels for the machine set |
-| instanceType | [string](#string) |  | Type of machines to provision (standard or gpu) |
-| count | [int32](#int32) |  | The number of machines |
-
-
-
-
-
-
-<a name="cmassh.ScaleNodePoolMsg"></a>
-
-### ScaleNodePoolMsg
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| clusterName | [string](#string) |  | What is the name of the cluster to scale a node pool |
-| node_pools | [ScaleNodePoolSpec](#cmassh.ScaleNodePoolSpec) | repeated | What node pools to scale |
-
-
-
-
-
-
-<a name="cmassh.ScaleNodePoolReply"></a>
-
-### ScaleNodePoolReply
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | Was this a successful request |
-
-
-
-
-
-
-<a name="cmassh.ScaleNodePoolSpec"></a>
-
-### ScaleNodePoolSpec
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | What is the node pool name to scale |
-| count | [int32](#int32) |  | Number of machines to scale |
-
-
-
-
-
-
-<a name="cmassh.UpgradeClusterMsg"></a>
-
-### UpgradeClusterMsg
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | What is the cluster that we are considering for upgrade |
-| version | [string](#string) |  | What version are we upgrading to? |
-
-
-
-
-
-
-<a name="cmassh.UpgradeClusterReply"></a>
-
-### UpgradeClusterReply
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ok | [bool](#bool) |  | Was this a successful request |
-
-
-
-
-
- 
-
-
-<a name="cmassh.ClusterStatus"></a>
-
-### ClusterStatus
-ClusterStatus
-Specifies current cluster state.
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| STATUS_UNSPECIFIED | 0 | Not set |
-| PROVISIONING | 1 | The cluster is being created. |
-| RUNNING | 2 | The cluster has been created and is fully usable. |
-| RECONCILING | 3 | Some work is actively being done on the cluster, such as upgrading the master or node software. |
-| STOPPING | 4 | The cluster is being deleted |
-| ERROR | 5 | The cluster may be unusable |
-| DEGRADED | 6 | The cluster requires user action to restore full functionality |
-
-
- 
-
- 
-
-
-<a name="cmassh.Cluster"></a>
-
-### Cluster
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| CreateCluster | [CreateClusterMsg](#cmassh.CreateClusterMsg) | [CreateClusterReply](#cmassh.CreateClusterReply) | Will provision a cluster |
-| GetCluster | [GetClusterMsg](#cmassh.GetClusterMsg) | [GetClusterReply](#cmassh.GetClusterReply) | Will retrieve the status of a cluster and its kubeconfig for connectivity |
-| DeleteCluster | [DeleteClusterMsg](#cmassh.DeleteClusterMsg) | [DeleteClusterReply](#cmassh.DeleteClusterReply) | Will delete a cluster |
-| GetClusterList | [GetClusterListMsg](#cmassh.GetClusterListMsg) | [GetClusterListReply](#cmassh.GetClusterListReply) | Will retrieve a list of clusters |
-| GetClusterNodesStatus | [GetClusterNodesStatusMsg](#cmassh.GetClusterNodesStatusMsg) | [GetClusterNodesStatusReply](#cmassh.GetClusterNodesStatusReply) | Will get cluster nodes status for a provisioned cluster |
-| GetVersionInformation | [GetVersionMsg](#cmassh.GetVersionMsg) | [GetVersionReply](#cmassh.GetVersionReply) | Will return version information about api server |
-| AddNodePool | [AddNodePoolMsg](#cmassh.AddNodePoolMsg) | [AddNodePoolReply](#cmassh.AddNodePoolReply) | Will add node pool to a provisioned cluster |
-| DeleteNodePool | [DeleteNodePoolMsg](#cmassh.DeleteNodePoolMsg) | [DeleteNodePoolReply](#cmassh.DeleteNodePoolReply) | Will delete a node pool from a provisioned cluster |
-| ScaleNodePool | [ScaleNodePoolMsg](#cmassh.ScaleNodePoolMsg) | [ScaleNodePoolReply](#cmassh.ScaleNodePoolReply) | Will scale the number of machines in a node pool for a provisioned cluster |
-| GetUpgradeClusterInformation | [GetUpgradeClusterInformationMsg](#cmassh.GetUpgradeClusterInformationMsg) | [GetUpgradeClusterInformationReply](#cmassh.GetUpgradeClusterInformationReply) | Will return upgrade options for a given cluster |
-| UpgradeCluster | [UpgradeClusterMsg](#cmassh.UpgradeClusterMsg) | [UpgradeClusterReply](#cmassh.UpgradeClusterReply) | Will attempt to upgrade a cluster |
+| CreateCluster | [CreateClusterMsg](#cnct.kaas.api.CreateClusterMsg) | [CreateClusterReply](#cnct.kaas.api.CreateClusterReply) | Will provision a cluster |
+| GetCluster | [GetClusterMsg](#cnct.kaas.api.GetClusterMsg) | [GetClusterReply](#cnct.kaas.api.GetClusterReply) | Will retrieve the status of a cluster and its kubeconfig for connectivity |
+| DeleteCluster | [DeleteClusterMsg](#cnct.kaas.api.DeleteClusterMsg) | [DeleteClusterReply](#cnct.kaas.api.DeleteClusterReply) | Will delete a cluster |
+| GetClusterList | [GetClusterListMsg](#cnct.kaas.api.GetClusterListMsg) | [GetClusterListReply](#cnct.kaas.api.GetClusterListReply) | Will retrieve a list of clusters |
+| GetClusterNodesStatus | [GetClusterNodesStatusMsg](#cnct.kaas.api.GetClusterNodesStatusMsg) | [GetClusterNodesStatusReply](#cnct.kaas.api.GetClusterNodesStatusReply) | Will get cluster nodes status for a provisioned cluster |
+| GetVersionInformation | [GetVersionMsg](#cnct.kaas.api.GetVersionMsg) | [GetVersionReply](#cnct.kaas.api.GetVersionReply) | Will return version information about api server |
+| AddNodePool | [AddNodePoolMsg](#cnct.kaas.api.AddNodePoolMsg) | [AddNodePoolReply](#cnct.kaas.api.AddNodePoolReply) | Will add node pool to a provisioned cluster |
+| DeleteNodePool | [DeleteNodePoolMsg](#cnct.kaas.api.DeleteNodePoolMsg) | [DeleteNodePoolReply](#cnct.kaas.api.DeleteNodePoolReply) | Will delete a node pool from a provisioned cluster |
+| ScaleNodePool | [ScaleNodePoolMsg](#cnct.kaas.api.ScaleNodePoolMsg) | [ScaleNodePoolReply](#cnct.kaas.api.ScaleNodePoolReply) | Will scale the number of machines in a node pool for a provisioned cluster |
+| GetUpgradeClusterInformation | [GetUpgradeClusterInformationMsg](#cnct.kaas.api.GetUpgradeClusterInformationMsg) | [GetUpgradeClusterInformationReply](#cnct.kaas.api.GetUpgradeClusterInformationReply) | Will return upgrade options for a given cluster |
+| UpgradeCluster | [UpgradeClusterMsg](#cnct.kaas.api.UpgradeClusterMsg) | [UpgradeClusterReply](#cnct.kaas.api.UpgradeClusterReply) | Will attempt to upgrade a cluster |
 
  
 
