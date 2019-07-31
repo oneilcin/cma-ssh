@@ -32,24 +32,22 @@ document. You can [generate an API Key][generate-an-api-key] using the MAAS GUI.
 There are a few steps you should run to get your development environment set up.
 
 ```bash
-make go1.12.4
+make go1.12.7
 ```
 
 Now whenever you want to build you should run.
 
 ```bash
-go1.12.4 build -o cma-ssh cmd/cma-ssh/main.go
+make
 ```
 
 If you need to regenerate files you can do it with the following commands.
 
 ```bash
-# the first time you generate files
-make generate
-# after the first time you can use either
-make generate
-# or
-go1.12.4 generate ./...
+# run the protobuf compiler and code generator
+make protoc
+# create crd and rbac
+make manifests
 ```
 
 If you want to test a clean build (no deps installed) or you love long build times.
@@ -57,6 +55,10 @@ If you want to test a clean build (no deps installed) or you love long build tim
 ```bash
 make clean-test
 ```
+
+**Note:** If you have issues building, there is an outstanding issue in which
+you need to build this project in the appropriate `$GOPATH` location. Specifically
+`$GOPATH/src/github.com/samsung-cnct/cma-ssh`.
 
 ### Running cma-ssh
 
